@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alerta de talarica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            width: 400px;
+            height: 400px;
+            background-color: #333;
+            border-radius: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-size: 30px;
+            line-height: 0;
+        }
+
+        p{
+            color: #fff;
+            text-align: center;
+            line-height: 0;
+        }
+        
+        .container img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+
+        /* CSS adicionado */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1f27;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #0f0d13;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin-top: 0;
+            color: #fff;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF0000;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+        
+        a {
+            color: #FF0000;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+        }
+
+        /* Estilos para a animação dos corações */
+        @keyframes jorrar {
+          0% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-800px) rotate(460deg);
+            opacity: 0;
+          }
+        }
+        
+        /* Estilos para o coração */
+        .coracao {
+          position: absolute;
+          font-size: 30px;
+          color: red;
+          animation: jorrar 2s linear infinite;
+        }
+        
+        /* Estilos para o coração branco que acompanha o cursor */
+        .coracao-cursor {
+          position: fixed;
+          font-size: 30px;
+          color: white;
+          pointer-events: none;
+        }
+
+        /* Estilos para tornar a página responsiva para dispositivos móveis */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Achou mesmo que teria como entrar ?</h1>
+        <p>Impossivel, meu coração só tem vaga pra uma pessoa!</p>
+        <img src="img/crying-happy.gif" alt="">
+    </div>
+</body>
+</html>

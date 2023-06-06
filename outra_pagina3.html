@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Centra de sentimentos de PC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1f27;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #0f0d13;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            margin-top: 0;
+            color: #fff;
+            text-align: left;
+        }
+        
+        /* Estilos para a animação dos corações */
+        @keyframes jorrar {
+          0% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-800px) rotate(460deg);
+            opacity: 0;
+          }
+        }
+        
+        /* Estilos para o coração */
+        .coracao {
+          position: absolute;
+          font-size: 30px;
+          color: #e040fb; /* Cor roxa neon */
+          animation: jorrar 2s linear infinite;
+        }
+        
+        /* Estilos para o coração branco que acompanha o cursor */
+        .coracao-cursor {
+          position: fixed;
+          font-size: 30px;
+          color: white;
+          pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="coracoes-container"></div>
+   <center>
+    <div class="container">
+        <h1>Olá, Juliana Cristina Pinto Camargo.💕</h1>
+        <p style="text-align: justify;color: #fff;">Você acessou a central de sentimentos de "PC"</p>
+        <p style="text-align: justify;color: #fff;">Após uma análise a partir dos dados levantados comprova-se que "PC" é completamente apaixonado por vc, a felicidade encontrada é de alto nivel por conta de todos esses momentos compartilhados ao seu lado.</p>
+        <p style="text-align: justify;color: #fff;">
+            Nós, responsáveis pelos sentimemtos de "PC" queremos te presentear como forma de agradecimento.
+        </p>
+        <p style="text-align: justify">
+        <a style="text-decoration: none; color: #8000ff;" href="outra_pagina4.html">Clique aqui para resgatar seu presente</a>
+
+        </p>
+        <p style="text-align: justify;color: #fff;">Ps: "PC" te ama!</p>
+    </div>
+   </center>
+    <script>
+        // Função para criar um coração
+        function criarCoracao() {
+          const coracao = document.createElement('div');
+          coracao.classList.add('coracao');
+          coracao.innerHTML = '&hearts;';
+        
+          // Posiciona o coração em uma posição aleatória na tela
+          const x = Math.random() * (window.innerWidth - 40) + 20;
+          const y = Math.random() * (window.innerHeight - 40) + 20;
+          coracao.style.left = x + 'px';
+          coracao.style.top = y + 'px';
+        
+          // Adiciona o coração ao contêiner
+          const coracoesContainer = document.getElementById('coracoes-container');
+          coracoesContainer.appendChild(coracao);
+        
+          // Remove o coração quando a animação terminar
+          coracao.addEventListener('animationend', () => {
+            coracao.remove();
+          });
+        }
+        
+        // Função para criar corações continuamente
+        function criarCoracoesContinuamente() {
+          criarCoracao();
+        
+          // Chama a função novamente após um intervalo de tempo
+          setTimeout(criarCoracoesContinuamente, 200);
+        }
+        
+        // Inicia a criação contínua dos corações
+        criarCoracoesContinuamente();
+        
+        // Adiciona corações brancos que acompanham o cursor
+        document.addEventListener('mousemove', (event) => {
+          const coracaoCursor = document.createElement('div');
+          coracaoCursor.classList.add('coracao-cursor');
+          coracaoCursor.innerHTML = '&hearts;';
+        
+          // Posiciona o coração branco na posição do cursor
+          const x = event.clientX - 15;
+          const y = event.clientY - 15;
+          coracaoCursor.style.left = x + 'px';
+          coracaoCursor.style.top = y + 'px';
+        
+          // Adiciona o coração branco ao corpo do documento
+          document.body.appendChild(coracaoCursor);
+        
+          // Remove o coração branco após um tempo
+          setTimeout(() => {
+            coracaoCursor.remove();
+          }, 500);
+        });
+    </script>
+</body>
+</html>

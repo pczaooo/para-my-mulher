@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Centra de sentimentos de PC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1f27;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #0f0d13;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            margin-top: 0;
+            color: #fff;
+            text-align: center;
+        }
+        
+        /* Estilos para a animação dos corações */
+        @keyframes jorrar {
+          0% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-800px) rotate(460deg);
+            opacity: 0;
+          }
+        }
+        
+        /* Estilos para o coração */
+        .coracao {
+          position: absolute;
+          font-size: 30px;
+          color: #e500ff;
+          animation: jorrar 2s linear infinite;
+        }
+        
+        /* Estilos para o coração branco que acompanha o cursor */
+        .coracao-cursor {
+          position: fixed;
+          font-size: 30px;
+          color: white;
+          pointer-events: none;
+        }
+
+        .scene {
+          width: 500px;
+          height: 400px;
+          margin: 40px 0;
+          perspective: 600px;
+        }
+
+        .card {
+          width: 100%;
+          height: 100%;
+          transition: transform 1s;
+          transform-style: preserve-3d;
+          cursor: pointer;
+          position: relative;
+        }
+
+        .card.is-flipped {
+          transform: rotateY(180deg);
+        }
+
+        .card__face {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          line-height: 40px;
+          color: white;
+          text-align: center;
+          font-weight: bold;
+          font-size: 40px;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+
+        .card__face--front {
+          background: #1a1f27;
+          border-radius: 5%;
+        }
+
+        .card__face--back {
+          background: #1a1f27;
+          transform: rotateY(180deg);
+          border-radius: 5%;
+        }
+
+        .card__face--back > p {
+          padding-bottom: 20px;
+          margin: 0 5%;
+          font-size: 22px;
+          text-align: left;
+          color: #fff;
+        }
+
+        .card__face--back > ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0 5%;
+          text-align: left;
+          font-size:20px;
+        }
+
+        .card__face--back > ul > li {
+          margin-bottom: 10px;
+          color: #fff;
+        }
+        .card__face--back > ul > li >a{
+          text-decoration: none;
+          color: white;
+
+        }
+
+        .pulsar {
+          animation: pulsar 1s infinite;
+        }
+
+        @keyframes pulsar {
+          0% {
+            color: #e500ff;
+            text-shadow: 0 0 10px #e500ff;
+          }
+          50% {
+            color: #b300cc;
+            text-shadow: 0 0 20px #b300cc;
+          }
+          100% {
+            color: #e500ff;
+            text-shadow: 0 0 10px #e500ff;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div id="coracoes-container"></div>
+    <center>
+        <div class="container">
+            <h1>Clique para revelar sua surpresa!</h1>
+            <div class="scene scene--card">
+                <div class="card">
+                    <div class="card__face card__face--front">
+                        <h1 style="margin-top: 35%; font-size: 70%;" class="pulsar">Clique aqui!</h1>
+                    </div>
+                    <div class="card__face card__face--back">
+                      <br>
+                        <ul>
+                          <li> - Vale noite de comida japonesa</li>
+                          <li>- Surpresa talvez um pouco interessante</li>
+                          <li>- Muitos chocolates e besteira</li>
+                          <li>
+                            <a href="outra_pagina5.html" class="pulsar">- <span style="text-decoration: underline;">Clique aqui para fazer uma verificação de dois fatores</span></a>
+                          </li>
+                        </ul>
+                       
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </center>
+    <script>
+        // Função para criar um coração
+        function criarCoracao() {
+            const coracao = document.createElement('div');
+            coracao.classList.add('coracao');
+            coracao.innerHTML = '&hearts;';
+
+            // Posiciona o coração em uma posição aleatória na tela
+            const x = Math.random() * (window.innerWidth - 40) + 20;
+            const y = Math.random() * (window.innerHeight - 40) + 20;
+            coracao.style.left = x + 'px';
+            coracao.style.top = y + 'px';
+
+            // Adiciona o coração ao contêiner
+            const coracoesContainer = document.getElementById('coracoes-container');
+            coracoesContainer.appendChild(coracao);
+
+            // Remove o coração quando a animação terminar
+            coracao.addEventListener('animationend', () => {
+                coracao.remove();
+            });
+        }
+
+        // Função para criar corações continuamente
+        function criarCoracoesContinuamente() {
+            criarCoracao();
+
+            // Chama a função novamente após um intervalo de tempo
+            setTimeout(criarCoracoesContinuamente, 200);
+        }
+
+        // Inicia a criação contínua dos corações
+        criarCoracoesContinuamente();
+
+        // Adiciona corações brancos que acompanham o cursor
+        document.addEventListener('mousemove', (event) => {
+            const coracaoCursor = document.createElement('div');
+            coracaoCursor.classList.add('coracao-cursor');
+            coracaoCursor.innerHTML = '&hearts;';
+
+            // Posiciona o coração branco na posição do cursor
+            const x = event.clientX - 15;
+            const y = event.clientY - 15;
+            coracaoCursor.style.left = x + 'px';
+            coracaoCursor.style.top = y + 'px';
+
+            // Adiciona o coração branco ao corpo do documento
+            document.body.appendChild(coracaoCursor);
+
+            // Remove o coração branco após um tempo
+            setTimeout(() => {
+                coracaoCursor.remove();
+            }, 500);
+        });
+
+        var card = document.querySelector('.card');
+        card.addEventListener('click', function () {
+            card.classList.toggle('is-flipped');
+        });
+    </script>
+</body>
+</html>
